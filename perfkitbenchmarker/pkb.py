@@ -58,7 +58,6 @@ import logging
 import sys
 import uuid
 
-from perfkitbenchmarker import archive
 from perfkitbenchmarker import benchmarks
 from perfkitbenchmarker import benchmark_sets
 from perfkitbenchmarker import benchmark_spec
@@ -91,8 +90,6 @@ flags.DEFINE_list('benchmarks', [benchmark_sets.STANDARD_SET],
                   'default is the standard set. For more information about '
                   'benchmarks and benchmark sets, see the README and '
                   'benchmark_sets.py.')
-flags.DEFINE_string('archive_bucket', None,
-                    'Archive results to the given S3/GCS bucket.')
 flags.DEFINE_string('project', None, 'GCP project ID under which '
                     'to create the virtual machines')
 flags.DEFINE_list(
@@ -435,11 +432,6 @@ def RunBenchmarks(publish=True):
   if FLAGS.run_stage not in [STAGE_ALL, STAGE_CLEANUP]:
     logging.info(
         'To run again with this setup, please use --run_uri=%s', FLAGS.run_uri)
-
-  if FLAGS.archive_bucket:
-    archive.ArchiveRun(vm_util.GetTempDir(), FLAGS.archive_bucket,
-                       gsutil_path=FLAGS.gsutil_path,
-                       prefix=FLAGS.run_uri + '_')
 
 
 def _GenerateBenchmarkDocumentation():
