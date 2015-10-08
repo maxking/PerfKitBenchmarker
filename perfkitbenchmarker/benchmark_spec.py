@@ -109,6 +109,8 @@ CLASSES = {
             digitalocean_virtual_machine.DebianBasedDigitalOceanVirtualMachine,
             RHEL:
             digitalocean_virtual_machine.RhelBasedDigitalOceanVirtualMachine,
+            UBUNTU_CONTAINER:
+            digitalocean_virtual_machine.ContainerziedDigitalOceanVirtualMachine,
         },
     },
     KUBERNETES: {

@@ -237,6 +237,11 @@ class DigitalOceanVirtualMachine(virtual_machine.BaseVirtualMachine):
     self.scratch_disks.append(digitalocean_disk.DigitalOceanDisk(disk_spec))
 
 
+class ContainerziedDigitalOceanVirtualMachine(DigitalOceanVirtualMachine,
+                                              linux_virtual_machine.ContainerizedDebianMixin):
+  DEFAULT_IMAGE = UBUNTU_IMAGE
+
+
 class DebianBasedDigitalOceanVirtualMachine(DigitalOceanVirtualMachine,
                                             linux_virtual_machine.DebianMixin):
   DEFAULT_IMAGE = UBUNTU_IMAGE
